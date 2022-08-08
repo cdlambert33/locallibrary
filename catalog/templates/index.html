@@ -14,10 +14,9 @@
     <li><strong>Authors:</strong> {{ num_authors }}</li>
     <li><strong>Genres:</strong></li>
         <ul>
-            <li>Comics: {{ num_comics }}</li>
-            <li>Fantasy: {{ num_fantasy }}</li>
-            <li>Nonfiction: {{ num_nonfi }}</li>
-            <li>Science fiction: {{ num_scifi }}</li>
+            {% for k,v in genre_counts.items %}
+            <li> {{ v.name }}: {{ v.count }}</li>
+            {% endfor %}
         </ul>
 </ul>
 {% endblock %}
