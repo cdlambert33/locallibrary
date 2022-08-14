@@ -6,8 +6,10 @@
 <div style="margin-left:20px;margin-top:20px">
     {% if author.date_of_death %}
         <h6>born: {{ author.date_of_birth }} | died: {{ author.date_of_death }}</h6>
-    {% else %}
+    {% elif author.date_of_birth %}
         <h6>born: {{ author.date_of_birth }} - </h6>
+    {% else %}
+        <h6>born: N/A</h6>
     {% endif %}
     <br>
     <h4>Books</h4>
@@ -18,5 +20,19 @@
         <p>Summary: {{ copy.summary }}</p>
       {% endif %}
     {% endfor %}
+    <div>
+    {% if perms.catalog.can_mark_returned %} 
+      <h6 class="space">Author actions:</h6>
+      <ul>
+        <li>
+          <a href="{% url 'author-update' pk=author.id %}">Edit</a>
+        </li>
+        <li>
+          <a href="{% url 'author-delete' pk=author.id %}">Delete</a>
+        </li>
+      </ul>
+    {% endif %}
+    </div>
 </div>
+
 {% endblock %}

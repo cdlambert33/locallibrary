@@ -23,5 +23,18 @@
       <p><strong>Imprint:</strong> {{ copy.imprint }}</p>
       <p class="text-muted"><strong>Id:</strong> {{ copy.id }}</p>
     {% endfor %}
+    <div>
+      {% if perms.catalog.can_mark_returned %} 
+        <h6 class="space">Book actions:</h6>
+        <ul>
+          <li>
+            <a href="{% url 'book-update' pk=book.id %}">Edit</a>
+          </li>
+          <li>
+            <a href="{% url 'book-delete' pk=book.id %}">Delete</a>
+          </li>
+        </ul>
+      {% endif %}
+      </div>
   </div>
 {% endblock %}

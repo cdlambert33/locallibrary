@@ -2,15 +2,23 @@
 
 {% block content %}
   <h1>Author List</h1>
+  <div>
   {% if author_list %}
   <ul>
     {% for author in author_list %}
       <li>
-        <a href="{{ author.get_absolute_url }}">{{ author.first_name }} {{ author.last_name }}</a>
+        <a href="{{ author.get_absolute_url }}">{{ author.last_name }}, {{ author.first_name }}</a>
       </li>
     {% endfor %}
   </ul>
   {% else %}
     <p>There are no authors in the library.</p>
   {% endif %}
+</div>
+<div class="space">
+  {% if perms.catalog.can_mark_returned %} 
+    <a href="{% url 'author-create' %}">Create new author</a>    
+  {% endif %}
+</div>
+<hr>
 {% endblock %}
